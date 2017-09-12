@@ -18,15 +18,14 @@ var express = require('express');
 var pugCacheHelper = require('express-pug-cache-helper');
 
 var app = express();
-var indexApp = express();
 
-indexApp.set('view engine', 'pug');
-indexApp.set('views', __dirname + '/templates');
-indexApp.get('/home', function(req, res, next){
+app.set('view engine', 'pug');
+app.set('views', __dirname + '/templates');
+app.get('/home', function(req, res, next){
   res.render('show');
 });
 
-app.use(pugCacheHelper(adminApp), {force: true}); // <= important part
+app.use(pugCacheHelper(app, { force: true }); // <= important part
 app.listen(3000);
 ```
 
